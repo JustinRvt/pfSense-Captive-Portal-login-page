@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css"/>
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Oswald'>
         <style>
 
             *,
@@ -30,6 +31,10 @@
                 font-weight: 500;
                 font-size: 1.05em;
                 font-family: 'Raleway', sans-serif;
+            }
+
+            h2 {
+                font-family: 'Oswald', sans-serif;
             }
 
             .content {
@@ -172,12 +177,12 @@
             .logo {
                 width: 100%;
                 height: 200px;
-                background-image: url('Logo_BW.jpg');
+                background-image: url('http://histoiresdeweb.fr/wp-content/uploads/2015/09/Nouveau-logo-Best-Western-Core.png');
                 background-repeat: no-repeat;
                 background-size: contain;
                 background-position: center;
-                border-top: 2px solid #990000;
-                border-bottom: 2px solid #990000;
+                border-top: 2px solid #938f8f;
+                border-bottom: 2px solid #938f8f;
             }
 
             img {
@@ -279,7 +284,6 @@
             .btn-5a:hover:before {
                 top: 0;
             }
-
 
             .tgl {
                 display: none;
@@ -398,13 +402,109 @@
             }
 
             .terms {
-              width:100%;
-              margin:0 20px 0 -8px;
+                width: 100%;
+                margin: 0 20px 0 -8px;
             }
 
             .terms a {
-              font-size: 0.6em;
+                font-size: 0.6em;
+                text-decoration: none;
+            }
+
+            .btn-modal {
+              background: #428bca;
+              border: #357ebd solid 1px;
+              border-radius: 3px;
+              color: #fff;
+              display: inline-block;
+              font-size: 14px;
+              padding: 8px 15px;
               text-decoration: none;
+              text-align: center;
+              min-width: 60px;
+              position: relative;
+              transition: color .1s ease;
+              /* top: 40em;*/
+            }
+
+            .btn-modal:hover {
+              background: #7FC6A6;
+              border: #0b5e38 solid 1px;
+            }
+
+            .btn-close {
+                color: #aaa;
+                font-size: 30px;
+                text-decoration: none;
+                position: absolute;
+                right: 5px;
+                top: 0;
+            }
+            .btn-close:hover {
+                color: #919191;
+            }
+            .modal:before {
+                content: "";
+                display: none;
+                background: rgba(0, 0, 0, 0.6);
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 10;
+            }
+            .modal:target:before {
+                display: block;
+            }
+            .modal:target .modal-dialog {
+                -webkit-transform: translate(0, 0);
+                -ms-transform: translate(0, 0);
+                transform: translate(0, 0);
+                top: 20%;
+            }
+            .modal-dialog {
+                background: #fefefe;
+                border: #333 solid 1px;
+                border-radius: 5px;
+                margin-left: -200px;
+                position: fixed;
+                left: 50%;
+                top: -100%;
+                z-index: 11;
+                width: 360px;
+                -webkit-transform: translate(0, -500%);
+                -ms-transform: translate(0, -500%);
+                transform: translate(0, -500%);
+                -webkit-transition: -webkit-transform 0.3s ease-out;
+                -moz-transition: -moz-transform 0.3s ease-out;
+                -o-transition: -o-transform 0.3s ease-out;
+                transition: transform 0.3s ease-out;
+            }
+            .modal-body {
+                padding: 20px;
+                overflow-y: scroll;
+                max-height:250px;
+                text-align: left;
+                font-size: 0.7em;
+            }
+            .modal-footer,
+            .modal-header {
+                padding: 10px 20px;
+            }
+            .modal-header {
+                border-bottom: #eee solid 1px;
+            }
+            .modal-header h2 {
+                font-size: 20px;
+            }
+            .modal-footer {
+                border-top: #eee solid 1px;
+                text-align: right;
+            }
+            /*ADDED TO STOP SCROLLING TO TOP*/
+            #close {
+                display: none;
             }
 
         </style>
@@ -435,12 +535,51 @@
                 <div class="terms">
                     <input id="cb5" type="checkbox" class="tgl tgl-flip"/>
                     <label data-tg-off="No" data-tg-on="Yes" for="cb5" class="tgl-btn"></label>
-                    <a href="#">I have read and agree to the terms and conditions</a>
+                    <a href="#modal-terms">I have read and agree to the terms and conditions</a>
                 </div>
                 <button class="btn btn-5 btn-5a fa-thumbs-up">
                     <span>Continue</span>
                 </button>
             </form>
-        </section>
-    </body>
+            <div class="modal" id="modal-terms" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-header">
+                        <h2>Terms & Conditions</h2>
+                        <a href="#close" class="btn-close" aria-hidden="true">×</a>
+                    </div>
+                    <div class="modal-body">
+                      <p>Welcome to our website. If you continue to browse and use this website, you are agreeing to comply with and be bound by the following terms and conditions of use, which together with our privacy policy govern [business name]'s relationship with
+                          you in relation to this website. If you disagree with any part of these terms and conditions, please do not use our website.
+                      </p>
+                      <p>
+                          The term '[business name]' or 'us' or 'we' refers to the owner of the website whose registered office is [address]. Our company registration number is [company registration number and place of registration]. The term 'you' refers to the user or
+                          viewer of our website.
+                      </p>
+                      <p>
+                          The use of this website is subject to the following terms of use:
+                      </p>
+                      <ul>
+                          <li>The content of the pages of this website is for your general information and use only. It is subject to change without notice.</li>
+                          <li>This website uses cookies to monitor browsing preferences. If you do allow cookies to be used, the following personal information may be stored by us for use by third parties: [insert list of information].</li>
+                          <li>Neither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You
+                              acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.</li>
+                          <li>Your use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through this website meet
+                              your specific requirements.</li>
+                          <li>This website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice,
+                              which forms part of these terms and conditions.</li>
+                          <li>All trade marks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website.</li>
+                          <li>Unauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.</li>
+                          <li>From time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content
+                              of the linked website(s).</li>
+                          <li>Your use of this website and any dispute arising out of such use of the website is subject to the laws of England, Northern Ireland, Scotland and Wales.</li>
+                      </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#close" class="btn-modal">Agree</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
 </html>
