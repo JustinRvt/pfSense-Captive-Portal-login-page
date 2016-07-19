@@ -81,53 +81,61 @@
   /*
   ====== TRANSLATION ======
   */
-  class Translator {
 
-    private $language = 'en';
-    private $lang     = array();
+  $language=substr($_SERVER["HTTP_ACCEPT_LANGUAGE"], 0, 2);
+  session_destroy();
 
-    public function __construct($language){
-      $this->language = $language;
-    }
+  // Use isset to check variable
+  if(!isset($_SESSION['language'])){
+    // start the session now
+    session_start();
 
-    private function findString($str){
-      if (array_key_exists($str, $this->lang[$this->language])) {
-        echo $this->lang[$this->language][$str];
-        return;
-      }
-      echo $str;
-    }
+    switch($language){
 
-    private function splitStrings($str){
-      return explode('=', trim($str));
-    }
+      case 'fr' :
+        $_SESSION['language']='fr';
+        break;
 
-    public function __($str){
-      if (!array_key_exists($this->language, $this->lang)){
-        if (file_exists($this->language.'.txt')){
-          $strings = array_map(array($this,'splitStrings'), file($this->language.'.txt'));
-          foreach ($strings as $k => $v){
-            $this->lang[$this->language][$v[0]]= $v[1];
-          }
-          return $this->findString($str);
-        }
-        else {
-          echo $str;
-        }
-      }
-      else {
-        return $this->findString($str);
-      }
+      case 'en' :
+        $_SESSION['language']='en';
+        break;
+      /* another language ?
+      case 'de' :
+        $_SESSION['language']='de';
+        break;
+      */
+      default:
+        $_SESSION['language']='en';
+        break;
+
     }
   }
 
-  // init
-  if(isset($_GET['lang']))
-    $translate = new Translator($_GET['lang']);
-  else
-    $translate = new Translator('en');
+  /*
+  ===============================================================
+  -------------------TRANSLATIONS HERE---------------------------
+  ===============================================================
+  */
+
+  // isset again
+  if(!isset($lang)){
+    // We need to keep this in session
+    session_start();
+
+    // Use Superglobal $_SESSION['language'] to make decision
+    switch ($_SESSION['language']) {
+      case 'fr':
+        $lang[title]='Portail Captif';
+        break;
+
+        case 'en':
+          $lang[title]='Captive Portal';
+          break;
+    }
+  }
 
 ?>
+
 <!DOCTYPE html>
 <!-- Adding classes for IE -->
 <!--[if lt IE 7]><html class="no-js lte-ie9 lte-ie8 lte-ie7 lte-ie6"> <![endif]-->
@@ -140,7 +148,7 @@
           <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <meta name="copyright" content="Exo Partners">
-          <title><?php echo $pageTitle;?></title>
+          <title><?php echo $lang['title'];?></title>
           <style>
               /*
               * === CUSTOM GOOGLE FONTS ===

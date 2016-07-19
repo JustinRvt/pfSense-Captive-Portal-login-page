@@ -1,0 +1,8 @@
+Captive Portal=Portail Captif
+Welcome to the pfSense Captive Portal=Bienvenue sur le portail captif pfSense
+Username=Utilisateur
+Password=Mot de passe
+No=Non
+Yes=Oui
+Continue=Continuer
+Terms and Conditions=Termes et conditions
