@@ -15,7 +15,7 @@
  */
 
 // set server UTF8
-header( 'content-type: text/html; charset=utf-8' );
+header('content-type: text/html; charset=utf-8');
 // debug mod
 error_reporting(E_ALL);
 ini_set('display_errors', 'off');
@@ -26,134 +26,134 @@ ini_set('display_errors', 'off');
 
 //====== IMAGE URL ======
 
-  $logoUrl ="./captiveportal-logo.jpg";
+$logoUrl = "./captiveportal-logo.jpg";
 
 //====== CSS COLOR VARIABLES ======
 
-  // General colors, developping THE new SASS.
-  $white = "#fff";
-  $black ="#000";
-  //
-  $mainColor = "#053879";
-  $backgroundColor = $white;
-  // Header colors
-  $bordersColor = "#d40f0f";
-  // Input styles
-  $inputColor = "#6a7989";
-  $inputBackgrounColor = "#f3eeee";
-  $iconColor ="#ddd";
-  // Icons colors
-  $iconUserColor = $white;
-  $iconLockColor = $white;
-  // Checkbox color states
-  $noColor = "#ff3a19";
-  $yesColor = "#7fc6a6";
-  // Continue button
-  $continueButtonBackgroundColor = $mainColor;
-  $continueButtonColor = $white;
-  $continueButtonActiveColor = "#0195db";  // when active
-  $continueButtonActiveColorBefore = $mainColor;   // when active
-  //
-  $termsVisitedLinkColor = "#7e0d61";
+// General colors, developping THE new SASS.
+$white                           = "#fff";
+$black                           = "#000";
+//
+$mainColor                       = "#053879";
+$backgroundColor                 = $white;
+// Header colors
+$bordersColor                    = "#d40f0f";
+// Input styles
+$inputColor                      = "#6a7989";
+$inputBackgrounColor             = "#f3eeee";
+$iconColor                       = "#ddd";
+// Icons colors
+$iconUserColor                   = $white;
+$iconLockColor                   = $white;
+// Checkbox color states
+$noColor                         = "#ff3a19";
+$yesColor                        = "#7fc6a6";
+// Continue button
+$continueButtonBackgroundColor   = $mainColor;
+$continueButtonColor             = $white;
+$continueButtonActiveColor       = "#0195db"; // when active
+$continueButtonActiveColorBefore = $mainColor; // when active
+//
+$termsVisitedLinkColor           = "#7e0d61";
 
 //===== TRANSLATION ======
 
 
-  $language=substr($_SERVER["HTTP_ACCEPT_LANGUAGE"], 0, 2);
+$language = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"], 0, 2);
 
-  // Use isset to check variable
-  if(!isset($_SESSION['language'])){
+// Use isset to check variable
+if (!isset($_SESSION['language'])) {
     // start the session now
     session_start();
 
-    switch($language){
+    switch ($language) {
 
-      case 'fr' :
-        $_SESSION['language']='fr';
-        break;
+        case 'fr':
+            $_SESSION['language'] = 'fr';
+            break;
 
-      case 'en' :
-        $_SESSION['language']='en';
-        break;
+        case 'en':
+            $_SESSION['language'] = 'en';
+            break;
 
-      //You can insert another languages, just declare them here :
-      //case 'de' :
-      //  $_SESSION['language']='de';
-      //  break;
+        //You can insert another languages, just declare them here :
+        //case 'de' :
+        //  $_SESSION['language']='de';
+        //  break;
 
-      default:
-        $_SESSION['language']='en';
-        break;
+        default:
+            $_SESSION['language'] = 'en';
+            break;
 
     }
-  }
+}
 
 
 //  ===============================================================
 //  -------------------TRANSLATIONS HERE---------------------------
 //  ===============================================================
 
-    // Use Superglobal $_SESSION['language'] to make decision
-    switch ($_SESSION['language']) {
-      case 'fr':
-        $lang['pageTitle']='Portail Captif';
-        $lang['mainTitle']='Bienvenue sur le portail captif pfSense';
-        $lang['username']='Utilisateur';
-        $lang['password']='Mot de passe';
-        $lang['yes']='Oui';
-        $lang['no']='Non';
-        $lang['acceptTerms']="J'ai lu et j'accepte les termes et conditions";
-        $lang['continueButton']='Continuer';
-        $lang['modalTitle']='Termes et conditions';
+// Use Superglobal $_SESSION['language'] to make decision
+switch ($_SESSION['language']) {
+    case 'fr':
+        $lang['pageTitle']        = 'Portail Captif';
+        $lang['mainTitle']        = 'Bienvenue sur le portail captif pfSense';
+        $lang['username']         = 'Utilisateur';
+        $lang['password']         = 'Mot de passe';
+        $lang['yes']              = 'Oui';
+        $lang['no']               = 'Non';
+        $lang['acceptTerms']      = "J'ai lu et j'accepte les termes et conditions";
+        $lang['continueButton']   = 'Continuer';
+        $lang['modalTitle']       = 'Termes et conditions';
         // Add or remove a line $modalSection[] to adjust your preferences
-        $modalSection[]="Bienvenue sur notre site. Si vous continuez à naviguer et utiliser ce site, vous acceptez de respecter et d'être lié par les termes et conditions d'utilisation suivantes, qui, avec notre politique de confidentialité régissent [nom commercial] de la relation d 'avec vous par rapport à ce site. Si vous êtes en désaccord avec une partie quelconque de ces termes et conditions, s'il vous plaît ne pas utiliser notre site Web.";
-        $modalSection[]="Le terme '[nom de l'entreprise] »ou« nous »ou« nous »désigne le propriétaire du site Web dont le siège social est [adresse]. Notre numéro d'enregistrement de l'entreprise est [numéro d'entreprise et le lieu de l'enregistrement]. Le terme «vous» fait référence à l'utilisateur ou au visiteur de notre site Web.";
-        $modalSection[]="L'utilisation de ce site est soumise aux conditions d'utilisation suivantes:";
+        $modalSection[]           = "Bienvenue sur notre site. Si vous continuez à naviguer et utiliser ce site, vous acceptez de respecter et d'être lié par les termes et conditions d'utilisation suivantes, qui, avec notre politique de confidentialité régissent [nom commercial] de la relation d 'avec vous par rapport à ce site. Si vous êtes en désaccord avec une partie quelconque de ces termes et conditions, s'il vous plaît ne pas utiliser notre site Web.";
+        $modalSection[]           = "Le terme '[nom de l'entreprise] »ou« nous »ou« nous »désigne le propriétaire du site Web dont le siège social est [adresse]. Notre numéro d'enregistrement de l'entreprise est [numéro d'entreprise et le lieu de l'enregistrement]. Le terme «vous» fait référence à l'utilisateur ou au visiteur de notre site Web.";
+        $modalSection[]           = "L'utilisation de ce site est soumise aux conditions d'utilisation suivantes:";
         // Add or remove a line $modalBulletPoint[] to adjust your preferences
-        $modalBulletPoint[]="Le contenu des pages de ce site est pour votre information générale et l'utilisation seulement. Un changement sans préavis est possible.";
-        $modalBulletPoint[]="Ce site utilise des cookies pour suivre les préférences de navigation. Si vous ne permettez que des cookies soient utilisés, les informations personnelles suivantes peuvent être stockées par nous pour une utilisation par des tiers: [insérer la liste des informations].";
-        $modalBulletPoint[]="Ni nous ni aucun tiers ne fournissons aucune garantie quant à l'exactitude, l'actualité, la performance, l'exhaustivité ou la pertinence des informations et des matériaux trouvés ou offerts sur ce site à des fins particulières. Vous reconnaissez que ces informations et matériaux peuvent contenir des inexactitudes ou des erreurs et nous excluons expressément toute responsabilité pour de telles inexactitudes ou erreurs dans toute la mesure permise par la loi.";
-        $modalBulletPoint[]="Votre utilisation de toute information ou matériel sur ce site est entièrement à vos propres risques, pour lesquels nous ne serons pas responsables. Il est de votre responsabilité de veiller à ce que tous les produits, services ou informations disponibles sur ce site répondra à vos besoins spécifiques.";
-        $modalBulletPoint[]="Ce site contient du matériel qui est détenue par ou autorisé à nous. Ce matériel inclut, mais sans s'y limiter, la conception, la mise en page, l'apparence et les graphiques. La reproduction est interdite, sauf en conformité avec l'avis du droit d'auteur, qui fait partie de ces termes et conditions.";
-        $modalBulletPoint[]="Toutes les marques déposées sont produites dans ce site qui ne sont pas la propriété de, ou autorisés à l'opérateur sont reconnues sur le site.";
-        $modalBulletPoint[]="L'utilisation non autorisée de ce site peut donner lieu à une demande de dommages-intérêts et / ou constituer une infraction pénale.";
-        $modalBulletPoint[]="De temps en temps, ce site peut également inclure des liens vers d'autres sites. Ces liens sont fournis pour votre convenance pour fournir de plus amples informations. Ils ne signifient pas que nous approuvons le site(s). Nous avons aucune responsabilité pour le contenu du site lié(s).";
-        $lang['agreeButton']='Accepter';
+        $modalBulletPoint[]       = "Le contenu des pages de ce site est pour votre information générale et l'utilisation seulement. Un changement sans préavis est possible.";
+        $modalBulletPoint[]       = "Ce site utilise des cookies pour suivre les préférences de navigation. Si vous ne permettez que des cookies soient utilisés, les informations personnelles suivantes peuvent être stockées par nous pour une utilisation par des tiers: [insérer la liste des informations].";
+        $modalBulletPoint[]       = "Ni nous ni aucun tiers ne fournissons aucune garantie quant à l'exactitude, l'actualité, la performance, l'exhaustivité ou la pertinence des informations et des matériaux trouvés ou offerts sur ce site à des fins particulières. Vous reconnaissez que ces informations et matériaux peuvent contenir des inexactitudes ou des erreurs et nous excluons expressément toute responsabilité pour de telles inexactitudes ou erreurs dans toute la mesure permise par la loi.";
+        $modalBulletPoint[]       = "Votre utilisation de toute information ou matériel sur ce site est entièrement à vos propres risques, pour lesquels nous ne serons pas responsables. Il est de votre responsabilité de veiller à ce que tous les produits, services ou informations disponibles sur ce site répondra à vos besoins spécifiques.";
+        $modalBulletPoint[]       = "Ce site contient du matériel qui est détenue par ou autorisé à nous. Ce matériel inclut, mais sans s'y limiter, la conception, la mise en page, l'apparence et les graphiques. La reproduction est interdite, sauf en conformité avec l'avis du droit d'auteur, qui fait partie de ces termes et conditions.";
+        $modalBulletPoint[]       = "Toutes les marques déposées sont produites dans ce site qui ne sont pas la propriété de, ou autorisés à l'opérateur sont reconnues sur le site.";
+        $modalBulletPoint[]       = "L'utilisation non autorisée de ce site peut donner lieu à une demande de dommages-intérêts et / ou constituer une infraction pénale.";
+        $modalBulletPoint[]       = "De temps en temps, ce site peut également inclure des liens vers d'autres sites. Ces liens sont fournis pour votre convenance pour fournir de plus amples informations. Ils ne signifient pas que nous approuvons le site(s). Nous avons aucune responsabilité pour le contenu du site lié(s).";
+        $lang['agreeButton']      = 'Accepter';
         // error messages for IE 9 :
-        $lang['auth_userErr']="Nom d'utilisateur requis";
-        $lang['auth_passErr']='Mot de passe requis';
-        $lang['checkboxTermsErr']='Vous devez accepter les termes et conditions';
+        $lang['auth_userErr']     = "Nom d'utilisateur requis";
+        $lang['auth_passErr']     = 'Mot de passe requis';
+        $lang['checkboxTermsErr'] = 'Vous devez accepter les termes et conditions';
         break;
 
-      case 'en':
-        $lang['pageTitle']='Captive Portal';
-        $lang['mainTitle']='Welcome to the pfSense Captive Portal';
-        $lang['username']='Username';
-        $lang['password']='Password';
-        $lang['yes']='Yes';
-        $lang['no']='No';
-        $lang['acceptTerms']='I have read and agree to the terms and conditions';
-        $lang['continueButton']='Continue';
-        $lang['modalTitle']='Terms and Conditions';
+    case 'en':
+        $lang['pageTitle']      = 'Captive Portal';
+        $lang['mainTitle']      = 'Welcome to the pfSense Captive Portal';
+        $lang['username']       = 'Username';
+        $lang['password']       = 'Password';
+        $lang['yes']            = 'Yes';
+        $lang['no']             = 'No';
+        $lang['acceptTerms']    = 'I have read and agree to the terms and conditions';
+        $lang['continueButton'] = 'Continue';
+        $lang['modalTitle']     = 'Terms and Conditions';
         // Add or remove a line $modalSection[] to adjust your preferences
-        $modalSection[]="Welcome to our website. If you continue to browse and use this website, you are agreeing to comply with and be bound by the following terms and conditions of use, which together with our privacy policy govern [business name]'s relationship with you in relation to this website. If you disagree with any part of these terms and conditions, please do not use our website.";
-        $modalSection[]="The term '[business name]' or 'us' or 'we' refers to the owner of the website whose registered office is [address]. Our company registration number is [company registration number and place of registration]. The term 'you' refers to the user or viewer of our website.";
-        $modalSection[]="The use of this website is subject to the following terms of use:";
+        $modalSection[]         = "Welcome to our website. If you continue to browse and use this website, you are agreeing to comply with and be bound by the following terms and conditions of use, which together with our privacy policy govern [business name]'s relationship with you in relation to this website. If you disagree with any part of these terms and conditions, please do not use our website.";
+        $modalSection[]         = "The term '[business name]' or 'us' or 'we' refers to the owner of the website whose registered office is [address]. Our company registration number is [company registration number and place of registration]. The term 'you' refers to the user or viewer of our website.";
+        $modalSection[]         = "The use of this website is subject to the following terms of use:";
         // Add or remove a line $modalBulletPoint[] to adjust your preferences
-        $modalBulletPoint[]="The content of the pages of this website is for your general information and use only. It is subject to change without notice.";
-        $modalBulletPoint[]="This website uses cookies to monitor browsing preferences. If you do allow cookies to be used, the following personal information may be stored by us for use by third parties: [insert list of information].";
-        $modalBulletPoint[]="Neither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.";
-        $modalBulletPoint[]="Your use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through this website meet your specific requirements.";
-        $modalBulletPoint[]="This website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions.";
-        $modalBulletPoint[]="All trade marks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website.";
-        $modalBulletPoint[]="Unauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.";
-        $modalBulletPoint[]="From time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s).";
-        $lang['agreeButton']='Agree';
+        $modalBulletPoint[]     = "The content of the pages of this website is for your general information and use only. It is subject to change without notice.";
+        $modalBulletPoint[]     = "This website uses cookies to monitor browsing preferences. If you do allow cookies to be used, the following personal information may be stored by us for use by third parties: [insert list of information].";
+        $modalBulletPoint[]     = "Neither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.";
+        $modalBulletPoint[]     = "Your use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through this website meet your specific requirements.";
+        $modalBulletPoint[]     = "This website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions.";
+        $modalBulletPoint[]     = "All trade marks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website.";
+        $modalBulletPoint[]     = "Unauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.";
+        $modalBulletPoint[]     = "From time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s).";
+        $lang['agreeButton']    = 'Agree';
         break;
         // error messages for IE 9 :
-        $lang['auth_userErr']='Username required';
-        $lang['auth_passErr']='Password required';
-        $lang['checkboxTermsErr']='You have to accept the terms';
+        $lang['auth_userErr']     = 'Username required';
+        $lang['auth_passErr']     = 'Password required';
+        $lang['checkboxTermsErr'] = 'You have to accept the terms';
 
         // in case you'd need to add more languages :
         // case :'de'
@@ -161,53 +161,56 @@ ini_set('display_errors', 'off');
         //  $lang['password']='Kennwort';
         //  break;
 
+}
+
+//====== FORM VALIDATION ======
+
+// set empty variables
+$auth_userErr = $auth_passErr = $checkboxTermsErr = "";
+$auth_user    = $auth_pass = $checkboxTerms = "";
+
+// if auth_user is empty display auth_userErr, else post auth_user
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["auth_user"])) {
+        $auth_userErr = $lang['auth_userErr'];
+    } else {
+        $auth_user = test_input($_POST["auth_user"]);
     }
+}
 
-    //====== FORM VALIDATION ======
+// if auth_pass is empty display auth_passErr, else post auth_pass
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["auth_pass"])) {
+        $auth_passErr = $lang['auth_passErr'];
+    } else {
+        $auth_pass = test_input($_POST["auth_pass"]);
+    }
+}
 
-      // set empty variables
-      $auth_userErr = $auth_passErr = $checkboxTermsErr = "";
-      $auth_user = $auth_pass = $checkboxTerms = "";
+// if checkboxTerms is unchecked display checkboxTermsErr, else I accept
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_POST['checkboxTerms'] != 'checked') {
+        $checkboxTermsErr = $lang['checkboxTermsErr'];
+    } else {
+        $checkboxTerms = test_input($_POST["checked"]);
+    }
+}
 
-      // if auth_user is empty display auth_userErr, else post auth_user
-      if ($_SERVER["REQUEST_METHOD"] == "POST"){
-        if (empty($_POST["auth_user"])){
-          $auth_userErr = $lang['auth_userErr'];
-        } else {
-          $auth_user = test_input($_POST["auth_user"]);
-        }
-      }
-
-      // if auth_pass is empty display auth_passErr, else post auth_pass
-      if ($_SERVER["REQUEST_METHOD"] == "POST"){
-        if (empty($_POST["auth_pass"])){
-          $auth_passErr = $lang['auth_passErr'];
-        } else {
-          $auth_pass = test_input($_POST["auth_pass"]);
-        }
-      }
-
-      // if checkboxTerms is unchecked display checkboxTermsErr, else I accept
-      if ($_SERVER["REQUEST_METHOD"] == "POST"){
-        if ($_POST['checkboxTerms'] != 'checked'){
-          $checkboxTermsErr = $lang['checkboxTermsErr'];
-        } else {
-          $checkboxTerms = test_input($_POST["checked"]);
-        }
-      }
-
-      // check data integrity
-      function test_input($data){
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-      }
+// check data integrity
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 ?>
 <!DOCTYPE html>
 <!-- Adding classes for IE -->
 <!--[if IE 9]><html class="no-js lte-ie9"><![endif]-->
-<html lang="<?php echo $_SESSION['language'];?>" class="no-js">
+<html lang="<?php
+echo $_SESSION['language'];
+?>" class="no-js">
       <head>
           <meta http-equiv="content-type" content="text/html" charset="UTF-8">
           <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -931,7 +934,7 @@ ini_set('display_errors', 'off');
               <!-->
               <span class="input input--hideo">
                   <!--[if !IE]><!-->
-                  <input class="input__field input__field--hideo" type="text" id="input-41" placeholder="<?php echo $lang['username'];?>" name="auth_user"/>
+                  <input class="input__field input__field--hideo" type="text" id="input-41" placeholder="<?php echo $lang['username'];?>" name="auth_user" required/>
                   <!--<![endif]-->
                   <!--[if lte IE 9]>
                   <input class="input__field input__field--hideo" type="text" id="input-41"  name="auth_user"/>
