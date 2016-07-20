@@ -192,7 +192,7 @@ ini_set('display_errors', 'off');
         if ($_POST['checkboxTerms'] != 'checked'){
           $checkboxTermsErr = $lang['checkboxTermsErr'];
         } else {
-          $checkboxTerms = test_input($_POST["checkBoxTerms"]);
+          $checkboxTerms = test_input($_POST["checked"]);
         }
       }
 
@@ -914,96 +914,96 @@ ini_set('display_errors', 'off');
           <!--
           * === HTML Form ===
           -->
-          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                <input name="zone" type="hidden" value="wifi_client">
-                <div class="logo"></div><!-- /end of div class="logo" -->
-                <h2><?php echo $lang['mainTitle'];?></h2><!-- /end of h2 -->
-                <div class="boxForm">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <input name="zone" type="hidden" value="wifi_client">
+            <div class="logo"></div><!-- /end of div class="logo" -->
+            <h2><?php echo $lang['mainTitle'];?></h2><!-- /end of h2 -->
+            <div class="boxForm">
+              <!--[if lte IE 9]>
+              <span class="error">
+                <p><?php echo $auth_userErr;?></p>
+                <p><?php echo $auth_passErr;?></p>
+                <p><?php echo $checkboxTermsErr;?></p>
+              </span>
+              <!-->
+              <!--[if lte IE 9]>
+              <?php echo $lang['username'];?>
+              <!-->
+              <span class="input input--hideo">
+                  <!--[if !IE]><!-->
+                  <input class="input__field input__field--hideo" type="text" id="input-41" placeholder="<?php echo $lang['username'];?>" name="auth_user"/>
+                  <!--<![endif]-->
                   <!--[if lte IE 9]>
-                  <span class="error">
-                    <p><?php echo $auth_userErr;?></p>
-                    <p><?php echo $auth_passErr;?></p>
-                    <p><?php echo $checkboxTermsErr;?></p>
-                  </span>
-                  <!-->
-                  <!--[if lte IE 9]>
-                  <?php echo $lang['username'];?>
-                  <!-->
-                  <span class="input input--hideo">
-                      <!--[if !IE]><!-->
-                      <input class="input__field input__field--hideo" type="text" id="input-41" placeholder="<?php echo $lang['username'];?>" name="auth_user"/>
-                      <!--<![endif]-->
-                      <!--[if lte IE 9]>
-                      <input class="input__field input__field--hideo" type="text" id="input-41"  name="auth_user"/>
-                       <!-->
-                      <label class="input__label input__label--hideo" for="input-41">
-                          <span class="fa fa-fw fa-user icon icon--hideo"></span><!-- /end of span class="fa fa-fw fa-user icon icon--hideo" -->
-                      </label><!-- /end of label class="input__label input__label--hideo" -->
-                  </span><!-- /end of span class="input input--hideo" -->
-                  <!--[if lte IE 9]>
+                  <input class="input__field input__field--hideo" type="text" id="input-41"  name="auth_user"/>
                    <!-->
-                  <br/>
+                  <label class="input__label input__label--hideo" for="input-41">
+                      <span class="fa fa-fw fa-user icon icon--hideo"></span><!-- /end of span class="fa fa-fw fa-user icon icon--hideo" -->
+                  </label><!-- /end of label class="input__label input__label--hideo" -->
+              </span><!-- /end of span class="input input--hideo" -->
+              <!--[if lte IE 9]>
+               <!-->
+              <br/>
+              <!--[if lte IE 9]>
+              <?php echo $lang['password'];?>
+              <!-->
+              <span class="input input--hideo">
+                  <!--[if !IE]><!-->
+                  <input class="input__field input__field--hideo" type="password" id="input-43" placeholder="<?php echo $lang['password'];?>" name="auth_pass" required/>
+                  <!--<![endif]-->
                   <!--[if lte IE 9]>
-                  <?php echo $lang['password'];?>
+                  <input class="input__field input__field--hideo" type="password" id="input-43" name="auth_pass" />
                   <!-->
-                  <span class="input input--hideo">
-                      <!--[if !IE]><!-->
-                      <input class="input__field input__field--hideo" type="password" id="input-43" placeholder="<?php echo $lang['password'];?>" name="auth_pass" required/>
-                      <!--<![endif]-->
-                      <!--[if lte IE 9]>
-                      <input class="input__field input__field--hideo" type="password" id="input-43" name="auth_pass" />
-                      <!-->
-                      <label class="input__label input__label--hideo" for="input-43">
-                          <span class="fa fa-fw fa-lock icon icon--hideo"></span>
-                      </label><!-- /end of label class="input__label input__label--hideo" -->
-                  </span><!-- /end of span class="input input--hideo" -->
-                  <br/>
-                  <div class="terms">
-                      <!--[if !IE]><!-->
-                      <input id="cb5" type="checkbox" class="tgl tgl-flip" name="checkboxTerms" value="checked" required/>
-                      <label data-tg-off="<?php echo $lang['no'];?>" data-tg-on="<?php echo $lang['yes'];?>" for="cb5" class="tgl-btn"></label><!-- /end of label data-tg-off="No" data-tg-on="Yes" for="cb5" class="tgl-btn"-->
-                      <!--<![endif]-->
-                      <!--[if lte IE 9]>
-                      <input id="cb5" type="checkbox" class="tgl tgl-flip" name="checkboxTerms" value="checked"/>
-                      <label data-tg-i9-off="<?php echo $lang['no'];?>" data-tg-i9-on="<?php echo $lang['yes'];?>" for="cb5" class="tgl-btn"></label>
-                      <!-->
-                      <a href="#modal-terms"><?php echo $lang['acceptTerms'];?></a>
-                  </div><!-- /end of div class="terms" -->
-                  <button class="btn btn-5 btn-5a fa-thumbs-up" name="accept" type="submit">
-                      <span><?php echo $lang['continueButton'];?></span>
-                  </button><!-- /end of button class="btn btn-5 btn-5a fa-thumbs-up" -->
-                </div><!-- /end of div class="boxForm" -->
-            </form>
-            <!--
-            * === Modal terms & conditions ===
-            -->
-            <div class="modal" id="modal-terms" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-header">
-                        <h2><?php echo $lang['modalTitle'];?></h2><!-- /end of h2 -->
-                        <a href="#close" class="btn-close" aria-hidden="true">x</a><!-- /end of a class="btn-close" -->
-                    </div><!-- /end of div class="modal-header" -->
-                    <div class="modal-body">
+                  <label class="input__label input__label--hideo" for="input-43">
+                      <span class="fa fa-fw fa-lock icon icon--hideo"></span>
+                  </label><!-- /end of label class="input__label input__label--hideo" -->
+              </span><!-- /end of span class="input input--hideo" -->
+              <br/>
+              <div class="terms">
+                  <!--[if !IE]><!-->
+                  <input id="cb5" type="checkbox" class="tgl tgl-flip" name="checkboxTerms" value="checked" required/>
+                  <label data-tg-off="<?php echo $lang['no'];?>" data-tg-on="<?php echo $lang['yes'];?>" for="cb5" class="tgl-btn"></label><!-- /end of label data-tg-off="No" data-tg-on="Yes" for="cb5" class="tgl-btn"-->
+                  <!--<![endif]-->
+                  <!--[if lte IE 9]>
+                  <input id="cb5" type="checkbox" class="tgl tgl-flip" name="checkboxTerms" value="checked"/>
+                  <label data-tg-i9-off="<?php echo $lang['no'];?>" data-tg-i9-on="<?php echo $lang['yes'];?>" for="cb5" class="tgl-btn"></label>
+                  <!-->
+                  <a href="#modal-terms"><?php echo $lang['acceptTerms'];?></a>
+              </div><!-- /end of div class="terms" -->
+              <button class="btn btn-5 btn-5a fa-thumbs-up" name="accept" type="submit">
+                  <span><?php echo $lang['continueButton'];?></span>
+              </button><!-- /end of button class="btn btn-5 btn-5a fa-thumbs-up" -->
+            </div><!-- /end of div class="boxForm" -->
+        </form>
+        <!--
+        * === Modal terms & conditions ===
+        -->
+        <div class="modal" id="modal-terms" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-header">
+                    <h2><?php echo $lang['modalTitle'];?></h2><!-- /end of h2 -->
+                    <a href="#close" class="btn-close" aria-hidden="true">x</a><!-- /end of a class="btn-close" -->
+                </div><!-- /end of div class="modal-header" -->
+                <div class="modal-body">
+                    <?php
+                      //For each element in modalSection[] this will increment our paragraphs
+                      foreach($modalSection as $section){
+                        echo '<p>'. $section . '</p><!-- /end of p -->';
+                      }
+                     ?>
+                    <ul>
                         <?php
-                          //For each element in modalSection[] this will increment our paragraphs
-                          foreach($modalSection as $section){
-                            echo '<p>'. $section . '</p><!-- /end of p -->';
+                          // For each element in modalBulletPoint[] this will increment our list
+                          foreach($modalBulletPoint as $list){
+                            echo '<li>' . $list . '</li><!-- /end of li -->';
                           }
-                         ?>
-                        <ul>
-                            <?php
-                              // For each element in modalBulletPoint[] this will increment our list
-                              foreach($modalBulletPoint as $list){
-                                echo '<li>' . $list . '</li><!-- /end of li -->';
-                              }
-                            ?>
-                        </ul><!-- /end of ul -->
-                    </div><!-- /end of div class="modal-body" -->
-                    <div class="modal-footer">
-                        <a href="#close" class="btn-modal"><?php echo $lang['agreeButton'];?></a><!-- /end of a class="btn-modal" -->
-                    </div><!-- /end of div class="modal-footer" -->
-                </div><!-- /end of div class="modal-dialog" -->
-            </div><!-- /end of div class="modal" -->
+                        ?>
+                    </ul><!-- /end of ul -->
+                </div><!-- /end of div class="modal-body" -->
+                <div class="modal-footer">
+                    <a href="#close" class="btn-modal"><?php echo $lang['agreeButton'];?></a><!-- /end of a class="btn-modal" -->
+                </div><!-- /end of div class="modal-footer" -->
+            </div><!-- /end of div class="modal-dialog" -->
+        </div><!-- /end of div class="modal" -->
     </section><!-- /end of section class="content" -->
   </body><!-- /end of body -->
 </html><!-- /end of html -->
