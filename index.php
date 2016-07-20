@@ -18,7 +18,7 @@
 header( 'content-type: text/html; charset=utf-8' );
 // debug mod
 error_reporting(E_ALL);
-ini_set('display_errors', 'on');
+ini_set('display_errors', 'off');
 // === CSS VARIABLES ===
 // === PHP FORM VALIDATION FOR HTML5 NON-CONVENIANT BROWSERS ===
 // === TRANSLATIONS ===
@@ -55,48 +55,6 @@ ini_set('display_errors', 'on');
   $continueButtonActiveColorBefore = $mainColor;   // when active
   //
   $termsVisitedLinkColor = "#7e0d61";
-
-//====== FORM VALIDATION ======
-
-  // set empty variables
-  $auth_userErr = $auth_passErr = $checkboxTermsErr = "";
-  $auth_user = $auth_pass = $checkboxTerms = "";
-
-  // if auth_user is empty display auth_userErr, else post auth_user
-  if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    if (empty($_POST["auth_user"])){
-      $auth_userErr = "Username required";
-    } else {
-      $auth_user = test_input($_POST["auth_user"]);
-    }
-  }
-
-  // if auth_pass is empty display auth_passErr, else post auth_pass
-  if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    if (empty($_POST["auth_pass"])){
-      $auth_passErr = "Password required";
-    } else {
-      $auth_pass = test_input($_POST["auth_pass"]);
-    }
-  }
-
-  // if checkboxTerms is unchecked display checkboxTermsErr, else I accept
-  if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    if ($_POST['checkboxTerms'] != 'checked'){
-      $checkboxTermsErr = "You have to accept the terms";
-    } else {
-      $checkboxTerms = test_input($_POST["checked"]);
-    }
-  }
-
-  // check data integrity
-  function test_input($data){
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-  }
-
 
 //===== TRANSLATION ======
 
@@ -161,6 +119,10 @@ ini_set('display_errors', 'on');
         $modalBulletPoint[]="L'utilisation non autorisée de ce site peut donner lieu à une demande de dommages-intérêts et / ou constituer une infraction pénale.";
         $modalBulletPoint[]="De temps en temps, ce site peut également inclure des liens vers d'autres sites. Ces liens sont fournis pour votre convenance pour fournir de plus amples informations. Ils ne signifient pas que nous approuvons le site(s). Nous avons aucune responsabilité pour le contenu du site lié(s).";
         $lang['agreeButton']='Accepter';
+        // error messages for IE 9 :
+        $lang['auth_userErr']="Nom d'utilisateur requis";
+        $lang['auth_passErr']='Mot de passe requis';
+        $lang['checkboxTermsErr']='Vous devez accepter les termes et conditions';
         break;
 
       case 'en':
@@ -188,6 +150,10 @@ ini_set('display_errors', 'on');
         $modalBulletPoint[]="From time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s).";
         $lang['agreeButton']='Agree';
         break;
+        // error messages for IE 9 :
+        $lang['auth_userErr']='Username required';
+        $lang['auth_passErr']='Password required';
+        $lang['checkboxTermsErr']='You have to accept the terms';
 
         // in case you'd need to add more languages :
         // case :'de'
@@ -196,6 +162,47 @@ ini_set('display_errors', 'on');
         //  break;
 
     }
+
+    //====== FORM VALIDATION ======
+
+      // set empty variables
+      $auth_userErr = $auth_passErr = $checkboxTermsErr = "";
+      $auth_user = $auth_pass = $checkboxTerms = "";
+
+      // if auth_user is empty display auth_userErr, else post auth_user
+      if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        if (empty($_POST["auth_user"])){
+          $auth_userErr = $lang['auth_userErr'];
+        } else {
+          $auth_user = test_input($_POST["auth_user"]);
+        }
+      }
+
+      // if auth_pass is empty display auth_passErr, else post auth_pass
+      if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        if (empty($_POST["auth_pass"])){
+          $auth_passErr = $lang['auth_passErr'];
+        } else {
+          $auth_pass = test_input($_POST["auth_pass"]);
+        }
+      }
+
+      // if checkboxTerms is unchecked display checkboxTermsErr, else I accept
+      if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        if ($_POST['checkboxTerms'] != 'checked'){
+          $checkboxTermsErr = $lang['checkboxTermsErr'];
+        } else {
+          $checkboxTerms = test_input($_POST["checkBoxTerms"]);
+        }
+      }
+
+      // check data integrity
+      function test_input($data){
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+      }
 ?>
 <!DOCTYPE html>
 <!-- Adding classes for IE -->
@@ -208,7 +215,7 @@ ini_set('display_errors', 'on');
           <meta name="copyright" content="Exo Partners">
           <title><?php echo $lang['pageTitle'];?></title>
           <style>
-              .error {display:none;}
+
               /*
               * === CUSTOM GOOGLE FONTS ===
               */
@@ -279,8 +286,7 @@ ini_set('display_errors', 'on');
                * === NORMALIZE.CSS ===
                https://necolas.github.io/normalize.css/
                */
-               progress,sub,sup{vertical-align:baseline}button,hr,input{overflow:visible}html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0} figcaption, menu,article,aside,details,figure,footer,header,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0} [hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{}button,select{text-transform:none}[type=submit], [type=reset],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}/*# sourceMappingURL=normalize.min.css.map */
-
+               progress,sub,sup{vertical-align:baseline}button,hr,input{overflow:visible}html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0} figcaption, menu,article,aside,details,figure,footer,header,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0} [hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{}button,select{text-transform:none}[type=submit], [type=reset],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
                /*
                * === CUSTOM CSS ===
                */
@@ -852,6 +858,15 @@ ini_set('display_errors', 'on');
                margin-left: auto;
                margin-right: auto;
              }
+             .error {
+                 margin: 2.4% 10% 1%;
+                 color: #d8000c;
+                 font-size: 0.8em;
+                 font-weight:bold;
+                 width: 75%;
+                 margin-left: auto;
+                 margin-right: auto;
+             }
               /*
       IE HACKS
           */
@@ -868,6 +883,7 @@ ini_set('display_errors', 'on');
                   }
               .lte-ie9 .terms a {
                 font-size: 0.59em;
+                padding-left:7%;
               }
               .lte-ie9 .terms {
                   width: 100%;
@@ -877,6 +893,19 @@ ini_set('display_errors', 'on');
                 display:inline-block;
                 position:relative;
                 top:3%;
+                left:8%;
+              }
+              .lte-ie9 .tgl {
+                left:15%;
+              }
+              .lte-ie9 .btn-5 {
+                  width: calc(100% - 3.1em);
+                  line-height: 24px;
+                  font-size: 0.8em;
+                  overflow: hidden;
+                  -webkit-backface-visibility: hidden;
+                  -moz-backface-visibility: hidden;
+                  backface-visibility: hidden;
               }
           </style><!-- /end of style -->
       </head><!-- /end of head -->
@@ -890,26 +919,39 @@ ini_set('display_errors', 'on');
                 <div class="logo"></div><!-- /end of div class="logo" -->
                 <h2><?php echo $lang['mainTitle'];?></h2><!-- /end of h2 -->
                 <div class="boxForm">
+                  <!--[if lte IE 9]>
+                  <span class="error">
+                    <p><?php echo $auth_userErr;?></p>
+                    <p><?php echo $auth_passErr;?></p>
+                    <p><?php echo $checkboxTermsErr;?></p>
+                  </span>
+                  <!-->
+                  <!--[if lte IE 9]>
+                  <?php echo $lang['username'];?>
+                  <!-->
                   <span class="input input--hideo">
                       <!--[if !IE]><!-->
-                      <input class="input__field input__field--hideo" type="text" id="input-41" placeholder="<?php echo $lang['username'];?>" name="auth_user" required/>
+                      <input class="input__field input__field--hideo" type="text" id="input-41" placeholder="<?php echo $lang['username'];?>" name="auth_user"/>
                       <!--<![endif]-->
                       <!--[if lte IE 9]>
-                      <input class="input__field input__field--hideo" type="text" id="input-41" value="<?php echo $lang['username'];?>" onfocus="value=''" onblur="value='<?php echo $lang['username'];?>'" name="auth_user"/>
-                      <span class="error">* <?php echo $auth_userErr;?></span>
+                      <input class="input__field input__field--hideo" type="text" id="input-41"  name="auth_user"/>
                        <!-->
                       <label class="input__label input__label--hideo" for="input-41">
                           <span class="fa fa-fw fa-user icon icon--hideo"></span><!-- /end of span class="fa fa-fw fa-user icon icon--hideo" -->
                       </label><!-- /end of label class="input__label input__label--hideo" -->
                   </span><!-- /end of span class="input input--hideo" -->
+                  <!--[if lte IE 9]>
+                   <!-->
                   <br/>
+                  <!--[if lte IE 9]>
+                  <?php echo $lang['password'];?>
+                  <!-->
                   <span class="input input--hideo">
                       <!--[if !IE]><!-->
                       <input class="input__field input__field--hideo" type="password" id="input-43" placeholder="<?php echo $lang['password'];?>" name="auth_pass" required/>
                       <!--<![endif]-->
                       <!--[if lte IE 9]>
-                      <input class="input__field input__field--hideo" type="password" id="input-43" value="<?php echo $lang['password'];?>" onfocus="value=''" onblur="value='<?php echo $lang['password'];?>'" name="auth_pass" />
-                      <span class="error">*  <?php echo $auth_passErr;?></span>
+                      <input class="input__field input__field--hideo" type="password" id="input-43" name="auth_pass" />
                       <!-->
                       <label class="input__label input__label--hideo" for="input-43">
                           <span class="fa fa-fw fa-lock icon icon--hideo"></span>
@@ -924,7 +966,6 @@ ini_set('display_errors', 'on');
                       <!--[if lte IE 9]>
                       <input id="cb5" type="checkbox" class="tgl tgl-flip" name="checkboxTerms" value="checked"/>
                       <label data-tg-i9-off="<?php echo $lang['no'];?>" data-tg-i9-on="<?php echo $lang['yes'];?>" for="cb5" class="tgl-btn"></label>
-                      <span class="error">* <?php echo $checkboxTermsErr;?></span>
                       <!-->
                       <a href="#modal-terms"><?php echo $lang['acceptTerms'];?></a>
                   </div><!-- /end of div class="terms" -->
