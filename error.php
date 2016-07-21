@@ -5,7 +5,7 @@
    *
    * Captive Portal Access
    *
-   * @category   Captive Portal
+   * @category   Portal Page
    * @package    pfSenseIndexConnect
    * @author     Justin Ravat
    * @copyright  2016 EXO PARTNERS
@@ -127,6 +127,8 @@
           $lang['auth_userErr']     = "Nom d'utilisateur requis";
           $lang['auth_passErr']     = 'Mot de passe requis';
           $lang['checkboxTermsErr'] = 'Vous devez accepter les termes et conditions';
+          // errorBox messages$
+          $lang['errorBox']       = "Une erreur est survenue lors de la tentative de connexion. Veuillez entrer un nom d'utilisateur et un mot de passe corrects.";
           break;
 
       case 'en':
@@ -153,11 +155,14 @@
           $modalBulletPoint[]     = "Unauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.";
           $modalBulletPoint[]     = "From time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s).";
           $lang['agreeButton']    = 'Agree';
-          break;
           // error messages for IE 9 :
           $lang['auth_userErr']     = 'Username required';
           $lang['auth_passErr']     = 'Password required';
           $lang['checkboxTermsErr'] = 'You have to accept the terms';
+          // errorBox messages$
+          $lang['errorBox']       = 'An error occur when trying to login. Please enter correct Username and Password.';
+          break;
+
 
           // in case you'd need to add more languages :
           // case :'de'
@@ -876,6 +881,16 @@
              margin-left: auto;
              margin-right: auto;
          }
+         .errorBox {
+             margin: 2.4% 10% 1%;
+             padding: 12px;
+             background: #ffbaba;
+             color: #d8000c;
+             font-size: 0.8em;
+             width: %;
+             margin-left: auto;
+             margin-right: auto;
+         }
           /*
       IE HACKS
       */
@@ -928,8 +943,10 @@
           <input name="zone" type="hidden" value="$PORTAL_REDIRURL$">
           <div class="logo"></div>
           <!-- /end of div class="logo" -->
-          <h2><?php echo $lang['mainTitle'];?></h2>
-          <!-- /end of h2 -->
+          <div class="errorBox">
+              <span class="fa fa-times-circle"></span><!-- /end of span class="fa fa-times-circle" -->
+              <?php echo $lang['errorBox'];?>
+          </div><!-- /end of div class="error" -->
           <div class="boxForm">
           <!--[if lte IE 9]>
           <span class="error">

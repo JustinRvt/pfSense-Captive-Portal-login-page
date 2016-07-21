@@ -4,7 +4,7 @@
   "deleteLocal": false,
   "hostname": "10.2.1.151",
   "port": "22",
-  "target": "/var/www/html",
+  "target": "/var/www/html/public",
   "ignore": [
     ".remote-sync.json",
     ".git/**"
