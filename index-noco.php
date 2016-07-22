@@ -11,16 +11,20 @@
    * @copyright  2016 EXO PARTNERS
    * @license    http://php.net/license/3_01.txt  PHP License 3.01
    * @version    CVS: $Id:$
-   * @see        NetOther, Net_Sample::Net_Sample()
-   * @since      File available since Release 0.9.6
+   * @since      File available since Release 22.07.16
    */
+
+  //pfSense requires some stuff
+  require_once("auth.inc");
+  require_once("functions.inc");
+  require_once("captiveportal.inc");
 
   // set server UTF8
   header('content-type: text/html; charset=utf-8');
   header("Expires: 0");
   header("Cache-Control: no-cache, no-store, must-revalidate");
   header("Pragma: no-cache");
-  header("Connection: close");
+  
   // debug mod
   error_reporting(E_ALL);
   ini_set('display_errors', 'off');
