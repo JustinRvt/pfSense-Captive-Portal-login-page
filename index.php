@@ -15,12 +15,13 @@
    * @since      File available since Release 0.9.6
    */
 
+
   // set server UTF8
   header('content-type: text/html; charset=utf-8');
   header("Expires: 0");
   header("Cache-Control: no-cache, no-store, must-revalidate");
   header("Pragma: no-cache");
-  header("Connection: close");
+
   // debug mod
   error_reporting(E_ALL);
   ini_set('display_errors', 'off');
@@ -921,11 +922,14 @@
     <!-- /end of head -->
     <body ng-app="pfSense">
       <section class="content">
+
+
         <!--
           * === HTML Form ===
           -->
         <form method="post" action="$PORTAL_ACTION$">
-          <input name="zone" type="hidden" value="$PORTAL_REDIRURL$">
+          <input name="redirurl" type="hidden" value="$PORTAL_REDIRURL$">
+          <input name="zone" type="hidden" value="$PORTAL_ZONE$">
           <div class="logo"></div>
           <!-- /end of div class="logo" -->
           <h2><?php echo $lang['mainTitle'];?></h2>
@@ -983,12 +987,16 @@
             <!-->
               <a href="#modal-terms"><?php echo $lang['acceptTerms'];?></a>
               </div><!-- /end of div class="terms" -->
-            <button class="btn btn-5 btn-5a fa-thumbs-up" name="accept" type="submit">
+            <button class="btn btn-5 btn-5a fa-thumbs-up" name="accept" type="submit" value="Continue">
             <span><?php echo $lang['continueButton'];?></span>
             </button><!-- /end of button class="btn btn-5 btn-5a fa-thumbs-up" -->
           </div>
           <!-- /end of div class="boxForm" -->
         </form>
+
+
+
+
         <!--
           * === Modal terms & conditions ===
           -->

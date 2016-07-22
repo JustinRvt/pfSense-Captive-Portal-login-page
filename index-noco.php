@@ -851,7 +851,8 @@
           * === HTML Form ===
           -->
         <form method="post" action="$PORTAL_ACTION$">
-          <input name="zone" type="hidden" value="$PORTAL_REDIRURL$">
+          <input name="redirurl" type="hidden" value="$PORTAL_REDIRURL$">
+          <input name="zone" type="hidden" value="$PORTAL_ZONE$">
           <div class="logo"></div>
           <!-- /end of div class="logo" -->
           <h2><?php echo $lang['mainTitle'];?></h2>
@@ -899,7 +900,7 @@
             <!-->
               <a href="#"><?php echo $lang['acceptTerms'];?></a>
               </div><!-- /end of div class="terms" -->
-            <button class="btn btn-5 btn-5a fa-thumbs-up" name="accept" type="submit">
+            <button class="btn btn-5 btn-5a fa-thumbs-up" name="accept" type="submit" value="Continue">
             <span><?php echo $lang['continueButton'];?></span>
             </button><!-- /end of button class="btn btn-5 btn-5a fa-thumbs-up" -->
           </div>
